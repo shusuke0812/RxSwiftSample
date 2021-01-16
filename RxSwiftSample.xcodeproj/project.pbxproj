@@ -14,6 +14,7 @@
 		9C894A4325A2018700F9A612 /* PhotoSearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C894A4125A2018700F9A612 /* PhotoSearchViewController.storyboard */; };
 		9C894A4525A2018A00F9A612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C894A4425A2018A00F9A612 /* Assets.xcassets */; };
 		9C894A4825A2018A00F9A612 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C894A4625A2018A00F9A612 /* LaunchScreen.storyboard */; };
+		9C95C5B625B330820036B29E /* PhotoSearchBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C95C5B525B330820036B29E /* PhotoSearchBaseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		9C894A4425A2018A00F9A612 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C894A4725A2018A00F9A612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C894A4925A2018A00F9A612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C95C5B525B330820036B29E /* PhotoSearchBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchBaseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 		9C9177A525B2D2E300B1B52E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9C95C5B425B32FBB0036B29E /* BaseView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -137,6 +140,14 @@
 			children = (
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		9C95C5B425B32FBB0036B29E /* BaseView */ = {
+			isa = PBXGroup;
+			children = (
+				9C95C5B525B330820036B29E /* PhotoSearchBaseView.swift */,
+			);
+			path = BaseView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +266,7 @@
 			files = (
 				9C894A4025A2018700F9A612 /* PhotoSearchViewController.swift in Sources */,
 				9C894A3C25A2018700F9A612 /* AppDelegate.swift in Sources */,
+				9C95C5B625B330820036B29E /* PhotoSearchBaseView.swift in Sources */,
 				9C894A3E25A2018700F9A612 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
