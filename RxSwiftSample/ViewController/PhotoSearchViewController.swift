@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BookSearchViewController: UIViewController {
+class PhotoSearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
