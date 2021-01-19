@@ -14,10 +14,12 @@ class LoginBaseView: UIView {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordValidLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var maxUserNameLengthLabel: UILabel!
+    @IBOutlet weak var currentUserNameLengthLabel: UILabel!
     
     // フォームの文字数上限
-    private let maxUserNameLength = 15
-    private let minPasswordLength = 5
+    let maxUserNameLength = 15
+    let minPasswordLength = 5
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,9 +29,14 @@ class LoginBaseView: UIView {
 // MRK: - Initialized Method
 extension LoginBaseView {
     private func initUI() {
+        // フォーム
+        self.userNameTextField.placeholder = "名前"
+        self.passwordTextField.placeholder = "パスワード"
         // バリデーションラベル
-        self.userNameValidLabel.text = "\(self.maxUserNameLength)文字以下"
-        self.passwordValidLabel.text = "\(self.minPasswordLength)文字以上"
+        self.userNameValidLabel.text = "必須入力項目です"
+        self.passwordValidLabel.text = "必須入力項目です"
+        self.maxUserNameLengthLabel.text = "\(self.maxUserNameLength)"
+        self.currentUserNameLengthLabel.text = "0"
         // はじめるボタンの体裁
         self.startButton.layer.masksToBounds = true
         self.startButton.layer.cornerRadius = 5
