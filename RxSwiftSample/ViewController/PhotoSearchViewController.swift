@@ -8,6 +8,8 @@
 import UIKit
 
 class PhotoSearchViewController: UIViewController {
+    /// BaseView
+    private var baseView: PhotoSearchBaseView { self.view as! PhotoSearchBaseView }
 
     override func viewDidLoad() {
         super.viewDidLoad()
