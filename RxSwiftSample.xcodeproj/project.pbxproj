@@ -25,6 +25,7 @@
 		9C9A086725CA6F2500C6C30A /* SearchPhotoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A086625CA6F2500C6C30A /* SearchPhotoRequest.swift */; };
 		9C9A086B25CA702000C6C30A /* PhotozouAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A086A25CA702000C6C30A /* PhotozouAPIRequest.swift */; };
 		9C9A086F25CA85B000C6C30A /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A086E25CA85B000C6C30A /* Common.swift */; };
+		9C9A087425CA8AE700C6C30A /* NumberFormHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A087325CA8AE700C6C30A /* NumberFormHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		9C9A086625CA6F2500C6C30A /* SearchPhotoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotoRequest.swift; sourceTree = "<group>"; };
 		9C9A086A25CA702000C6C30A /* PhotozouAPIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotozouAPIRequest.swift; sourceTree = "<group>"; };
 		9C9A086E25CA85B000C6C30A /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		9C9A087325CA8AE700C6C30A /* NumberFormHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 		9C894A3A25A2018700F9A612 /* RxSwiftSample */ = {
 			isa = PBXGroup;
 			children = (
+				9C9A087225CA8A2C00C6C30A /* Helper */,
 				9C9A086D25CA859F00C6C30A /* Static */,
 				9C9177A825B2D2F900B1B52E /* Entity */,
 				9C9177A725B2D2F100B1B52E /* Repository */,
@@ -210,6 +213,14 @@
 				9C9A086E25CA85B000C6C30A /* Common.swift */,
 			);
 			path = Static;
+			sourceTree = "<group>";
+		};
+		9C9A087225CA8A2C00C6C30A /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				9C9A087325CA8AE700C6C30A /* NumberFormHelper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C894A4025A2018700F9A612 /* PhotoSearchViewController.swift in Sources */,
+				9C9A087425CA8AE700C6C30A /* NumberFormHelper.swift in Sources */,
 				9C9A085325CA4FDB00C6C30A /* PhotoSearchViewModel.swift in Sources */,
 				9C9A086725CA6F2500C6C30A /* SearchPhotoRequest.swift in Sources */,
 				9C9A086B25CA702000C6C30A /* PhotozouAPIRequest.swift in Sources */,
