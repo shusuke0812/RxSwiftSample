@@ -12,6 +12,8 @@ class PhotoSearchViewController: UIViewController {
     private var baseView: PhotoSearchBaseView { self.view as! PhotoSearchBaseView }
     /// ViewModel
     private var viewModel: PhotoSearchViewModel!
+    /// 整数フォーム判定ヘルパー
+    private let numberFormHelper = NumberFormHelper()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +36,14 @@ extension PhotoSearchViewController: UICollectionViewDelegate {
 // MARK: - UICollectionView Delegate FlowLayout Method
 extension PhotoSearchViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // CollectionViewのindexによってサイズを設定する
-        return CGSize(width: <#T##CGFloat#>, height: <#T##CGFloat#>)
+        if numberFormHelper.judgePermutation(number: indexPath.item) {
+            let cellWidth: CGFloat = self.baseView.bounds.width
+            let cellHeight: CGFloat = cellWidth / 2
+            return CGSize(width: cellWidth, height: cellHeight)
+        } else {
+            let cellWidth: CGFloat = self.baseView.bounds.width / 2
+            let cellHeight: CGFloat = cellWidth
+            return CGSize(width: cellWidth, height: cellHeight)
+        }
     }
 }
