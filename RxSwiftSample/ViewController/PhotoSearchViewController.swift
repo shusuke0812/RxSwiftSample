@@ -17,7 +17,7 @@ class PhotoSearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.viewModel = PhotoSearchViewModel()
+        self.viewModel = PhotoSearchViewModel(photoSearchRepository: PhotoSearchRepository())
         self.setDelegateDataSource()
     }
 }
