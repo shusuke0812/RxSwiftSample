@@ -10,9 +10,12 @@ import UIKit
 class PhotoSearchViewController: UIViewController {
     /// BaseView
     private var baseView: PhotoSearchBaseView { self.view as! PhotoSearchBaseView }
+    /// ViewModel
+    private var viewModel: PhotoSearchViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.viewModel = PhotoSearchViewModel()
         self.setDelegateDataSource()
     }
 }
@@ -20,6 +23,7 @@ class PhotoSearchViewController: UIViewController {
 extension PhotoSearchViewController {
     private func setDelegateDataSource() {
         self.baseView.collectionView.delegate = self
+        self.baseView.collectionView.dataSource = self.viewModel
     }
 }
 // MARK: - UICollectionView Delegate Method
