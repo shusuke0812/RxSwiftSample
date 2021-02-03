@@ -58,7 +58,7 @@
         <!--Navigation Controller-->
         <scene sceneID="dbd-6W-FwU">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="f8T-FL-qPK" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="PhotoSearchViewController" automaticallyAdjustsScrollViewInsets="NO" id="f8T-FL-qPK" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1QQ-1p-Aca">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

@@ -18,6 +18,21 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.validateTextField()
+        self.didTapStartButton()
+    }
+}
+// MARK: - Privagte Method
+extension LoginViewController {
+    private func didTapStartButton() {
+        self.baseView.startButton.rx.tap.subscribe({ [weak self] _ in
+            self?.transitionPhotoSearcPage()
+        }).disposed(by: self.disposeBag)
+    }
+    private func transitionPhotoSearcPage() {
+        let s = UIStoryboard(name: "PhotoSearchViewController", bundle: nil)
+        let vc = s.instantiateViewController(identifier: "PhotoSearchViewController") as! UINavigationController
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
 }
 // MARK: - TextField Validation Method
