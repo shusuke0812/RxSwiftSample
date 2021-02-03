@@ -17,6 +17,8 @@
 		9C894A4325A2018700F9A612 /* PhotoSearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C894A4125A2018700F9A612 /* PhotoSearchViewController.storyboard */; };
 		9C894A4525A2018A00F9A612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C894A4425A2018A00F9A612 /* Assets.xcassets */; };
 		9C894A4825A2018A00F9A612 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C894A4625A2018A00F9A612 /* LaunchScreen.storyboard */; };
+		9C9528A925CA370B0023712F /* PhotoSearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9528A725CA370B0023712F /* PhotoSearchCollectionViewCell.swift */; };
+		9C9528AA25CA370B0023712F /* PhotoSearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C9528A825CA370B0023712F /* PhotoSearchCollectionViewCell.xib */; };
 		9C95C5B625B330820036B29E /* PhotoSearchBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C95C5B525B330820036B29E /* PhotoSearchBaseView.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,8 @@
 		9C894A4425A2018A00F9A612 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C894A4725A2018A00F9A612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C894A4925A2018A00F9A612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C9528A725CA370B0023712F /* PhotoSearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		9C9528A825CA370B0023712F /* PhotoSearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoSearchCollectionViewCell.xib; sourceTree = "<group>"; };
 		9C95C5B525B330820036B29E /* PhotoSearchBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchBaseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				9C95C5B425B32FBB0036B29E /* BaseView */,
+				9C9528A625CA36CE0023712F /* CollectionViewCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -148,6 +153,15 @@
 			children = (
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		9C9528A625CA36CE0023712F /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				9C9528A725CA370B0023712F /* PhotoSearchCollectionViewCell.swift */,
+				9C9528A825CA370B0023712F /* PhotoSearchCollectionViewCell.xib */,
+			);
+			path = CollectionViewCell;
 			sourceTree = "<group>";
 		};
 		9C95C5B425B32FBB0036B29E /* BaseView */ = {
@@ -219,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C894A4825A2018A00F9A612 /* LaunchScreen.storyboard in Resources */,
+				9C9528AA25CA370B0023712F /* PhotoSearchCollectionViewCell.xib in Resources */,
 				9C1DE1F225B586FD00196BE3 /* LoginViewController.storyboard in Resources */,
 				9C894A4525A2018A00F9A612 /* Assets.xcassets in Resources */,
 				9C894A4325A2018700F9A612 /* PhotoSearchViewController.storyboard in Resources */,
@@ -276,6 +291,7 @@
 			files = (
 				9C894A4025A2018700F9A612 /* PhotoSearchViewController.swift in Sources */,
 				9C894A3C25A2018700F9A612 /* AppDelegate.swift in Sources */,
+				9C9528A925CA370B0023712F /* PhotoSearchCollectionViewCell.swift in Sources */,
 				9C95C5B625B330820036B29E /* PhotoSearchBaseView.swift in Sources */,
 				9C1DE1EC25B586CA00196BE3 /* LoginViewController.swift in Sources */,
 				9C894A3E25A2018700F9A612 /* SceneDelegate.swift in Sources */,
