@@ -42,3 +42,11 @@ extension LoginBaseView {
         self.startButton.layer.cornerRadius = 5
     }
 }
+// MARK: - Setting UI Method
+extension LoginBaseView {
+    func setCurrentUserNameLengthLabel() {
+        if let textLength = self.userNameTextField.text?.count {
+            self.currentUserNameLengthLabel.text = "\(textLength)"
+        }
+    }
+}
