@@ -13,6 +13,24 @@ class PhotoSearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setDelegateDataSource()
     }
 }
-
+// MARK: - Initialized Method
+extension PhotoSearchViewController {
+    private func setDelegateDataSource() {
+        self.baseView.collectionView.delegate = self
+    }
+}
+// MARK: - UICollectionView Delegate Method
+extension PhotoSearchViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    }
+}
+// MARK: - UICollectionView Delegate FlowLayout Method
+extension PhotoSearchViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // CollectionViewのindexによってサイズを設定する
+        return CGSize(width: <#T##CGFloat#>, height: <#T##CGFloat#>)
+    }
+}
