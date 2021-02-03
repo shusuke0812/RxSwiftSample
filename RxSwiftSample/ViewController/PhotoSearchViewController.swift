@@ -26,6 +26,8 @@ extension PhotoSearchViewController {
     private func setDelegateDataSource() {
         self.baseView.collectionView.delegate = self
         self.baseView.collectionView.dataSource = self.viewModel
+        self.baseView.searchBar.delegate = self
+        self.viewModel.delegate = self
     }
 }
 // MARK: - UICollectionView Delegate Method
@@ -45,5 +47,22 @@ extension PhotoSearchViewController: UICollectionViewDelegateFlowLayout {
             let cellHeight: CGFloat = cellWidth
             return CGSize(width: cellWidth, height: cellHeight)
         }
+    }
+}
+// MARK: - UISearchBar Delegate Method
+extension PhotoSearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText: String = searchBar.text else { return }
+        let request = SearchPhotoRequest(keyword: searchText).buildURLRequest()
+        self.viewModel.getPhotos(request: request)
+    }
+}
+// MARK: - ViewModel Delegate Method
+extension PhotoSearchViewController: PhotoSearchViewModelDelegate {
+    func didSuccessGetPhotos() {
+        self.baseView.collectionView.reloadData()
+    }
+    func didFailedGetPhotos(errorMessage: String) {
+        print(errorMessage)
     }
 }
