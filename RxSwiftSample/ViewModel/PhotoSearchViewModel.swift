@@ -7,11 +7,41 @@
 
 import UIKit
 
+protocol PhotoSearchViewModelDelegate: AnyObject {
+    /// 画像の取得に成功した
+    func didSuccessGetPhotos()
+    /// 画像の取得に失敗した
+    /// - Parameter errorMessage: エラーメッセージ
+    func didFailedGetPhotos(errorMessage: String)
+}
+
 class PhotoSearchViewModel: NSObject {
+    /// SearchPhotoのリポジトリクラス
+    private let photoSearchRepository: PhotoSearchRepositoryProtocol
     /// 画像データ
     var photos: [Photo] = []
+    /// デリゲート
+    weak var delegate: PhotoSearchViewModelDelegate?
     /// CollectionViewのセクション数
     private let sectionNumber = 1
+    
+    init(photoSearchRepository: PhotoSearchRepositoryProtocol) {
+        self.photoSearchRepository = photoSearchRepository
+    }
+}
+// MARK: - API Method
+extension PhotoSearchViewModel {
+    func getPhotos(request: URLRequest) {
+        self.photoSearchRepository.getPhotos(request: request) { response in
+            switch response {
+            case .success(let photos):
+                self.photos = photos.info.photo
+                self.delegate?.didSuccessGetPhotos()
+            case .failure(let error):
+                self.delegate?.didFailedGetPhotos(errorMessage: "画像の取得に失敗しました" + "error=\(error.localizedDescription)")
+            }
+        }
+    }
 }
 // MARK: - UICollectionView DataSource Method
 extension PhotoSearchViewModel: UICollectionViewDataSource {
