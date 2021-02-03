@@ -23,5 +23,6 @@ class PhotoSearchBaseView: UIView {
 extension PhotoSearchBaseView {
     private func initUI() {
         self.flowLayout.estimatedItemSize = .zero
+        self.collectionView.register(UINib(nibName: "PhotoSearchCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PhotoSearchCollectionViewCell")
     }
 }
