@@ -53,6 +53,7 @@ extension PhotoSearchViewModel: UICollectionViewDataSource {
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoSearchCollectionViewCell", for: indexPath) as! PhotoSearchCollectionViewCell
+        cell.setUI(photo: self.photos[indexPath.row])
         return cell
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PhotoSearchCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
@@ -19,5 +20,12 @@ class PhotoSearchCollectionViewCell: UICollectionViewCell {
 extension PhotoSearchCollectionViewCell {
     private func initUI() {
         self.imageView.image = UIImage(named: "loading")
+    }
+}
+// MARK: - Setting UI Method
+extension PhotoSearchCollectionViewCell {
+    func setUI(photo: Photo) {
+        guard let photoImageUrl = URL(string: photo.imageUrl) else { return }
+        self.imageView.sd_setImage(with: photoImageUrl, placeholderImage: UIImage(named: "loading"))
     }
 }

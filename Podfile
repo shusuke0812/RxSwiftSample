@@ -6,7 +6,9 @@ target 'RxSwiftSample' do
   use_frameworks!
 
   # Pods for RxSwiftSample
-	pod 'RxSwift'
-	pod 'RxCocoa'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  # UI
+  pod 'SDWebImage'
 
 end
