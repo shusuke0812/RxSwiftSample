@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f8T-FL-qPK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f8T-FL-qPK">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,25 +20,33 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kw2-b9-26Y">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XpN-hx-8W7">
                                 <rect key="frame" x="0.0" y="144" width="414" height="718"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ygg-4y-Uau">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="kw2-b9-26Y" secondAttribute="bottom" id="4SG-Lu-oUL"/>
+                            <constraint firstItem="XpN-hx-8W7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3Le-HL-STQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XpN-hx-8W7" secondAttribute="trailing" id="6as-7d-QvY"/>
+                            <constraint firstItem="XpN-hx-8W7" firstAttribute="top" secondItem="VZg-2G-8cy" secondAttribute="bottom" id="8Io-h2-WIE"/>
                             <constraint firstItem="VZg-2G-8cy" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Clo-Ej-2er"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kw2-b9-26Y" secondAttribute="trailing" id="Nrr-99-P5U"/>
-                            <constraint firstItem="kw2-b9-26Y" firstAttribute="top" secondItem="VZg-2G-8cy" secondAttribute="bottom" id="SAU-qO-ZM0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="XpN-hx-8W7" secondAttribute="bottom" id="SnV-n0-Prh"/>
                             <constraint firstItem="VZg-2G-8cy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZRr-HU-YHy"/>
-                            <constraint firstItem="kw2-b9-26Y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="cEE-5L-mzV"/>
                             <constraint firstItem="VZg-2G-8cy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="tkp-ZO-kfR"/>
                         </constraints>
                         <connections>
+                            <outlet property="collectionView" destination="XpN-hx-8W7" id="uv1-pg-d2G"/>
+                            <outlet property="flowLayout" destination="ygg-4y-Uau" id="lpm-ph-c9L"/>
                             <outlet property="searchBar" destination="VZg-2G-8cy" id="G38-zi-v95"/>
-                            <outlet property="tableView" destination="kw2-b9-26Y" id="wNK-aX-mbQ"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="BJI-A2-7WG"/>

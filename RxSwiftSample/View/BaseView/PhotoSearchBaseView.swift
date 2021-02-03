@@ -10,8 +10,10 @@ import UIKit
 class PhotoSearchBaseView: UIView {
     
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
+    // MARK: - Lifecycle Method
     override func awakeFromNib() {
         super.awakeFromNib()
         self.initUI()
@@ -20,6 +22,6 @@ class PhotoSearchBaseView: UIView {
 // MARK: - Initialized Method
 extension PhotoSearchBaseView {
     private func initUI() {
-        
+        self.flowLayout.estimatedItemSize = .zero
     }
 }
