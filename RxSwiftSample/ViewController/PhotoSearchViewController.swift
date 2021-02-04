@@ -55,12 +55,16 @@ extension PhotoSearchViewController: UISearchBarDelegate {
         guard let searchText: String = searchBar.text else { return }
         let request = SearchPhotoRequest(keyword: searchText).buildURLRequest()
         self.viewModel.getPhotos(request: request)
+        // キーボードを閉じる
+        self.baseView.searchBar.endEditing(true)
     }
 }
 // MARK: - ViewModel Delegate Method
 extension PhotoSearchViewController: PhotoSearchViewModelDelegate {
     func didSuccessGetPhotos() {
-        self.baseView.collectionView.reloadData()
+        DispatchQueue.main.async { [weak self] in
+            self?.baseView.collectionView.reloadData()
+        }
     }
     func didFailedGetPhotos(errorMessage: String) {
         print(errorMessage)

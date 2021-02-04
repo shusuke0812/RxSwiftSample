@@ -35,10 +35,8 @@ extension PhotoSearchViewModel {
         self.photoSearchRepository.getPhotos(request: request) { response in
             switch response {
             case .success(let photos):
-                DispatchQueue.main.async { [weak self] in
-                    self?.photos = photos.info.photo
-                    self?.delegate?.didSuccessGetPhotos()
-                }
+                self.photos = photos.info.photo
+                self.delegate?.didSuccessGetPhotos()
             case .failure(let error):
                 self.delegate?.didFailedGetPhotos(errorMessage: "画像の取得に失敗しました" + "error=\(error.localizedDescription)")
             }
