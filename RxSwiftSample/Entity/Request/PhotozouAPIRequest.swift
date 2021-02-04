@@ -6,6 +6,9 @@
 //
 
 // フォト蔵API ドキュメント（search_public） : http://photozou.jp/basic/api_method_search_public
+// （注意）
+// 画像のURLがSSLに対応していない（httpスキーム表記である）ため、iOSのATS機能をinfo.plistで無効化している。
+// 本来は画像URLを`https`にすべきだが外部APIなので上記対応とした。
 
 import Foundation
 
