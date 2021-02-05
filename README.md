@@ -7,8 +7,8 @@ RxSwiftを使ったサンプルコード
 - MacOS Catalina version 10.15.7
 
 ## 概要
-- MVVM + RxSwift, RxCocoaを使ったサンプルアプリ
-- WebAPIを使った処理は、Keywordを基に写真を検索できる[フォト蔵API](http://photozou.jp/basic/api_method_search_public)を使用している
+- MVVM + RxSwift, RxCocoaを使った 写真検索アプリ
+- WebAPIは[フォト蔵API](http://photozou.jp/basic/api_method_search_public)を使用している
 
 ## UI
 - 写真検索画面
