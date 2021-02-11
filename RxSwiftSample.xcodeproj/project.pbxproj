@@ -17,6 +17,8 @@
 		9C894A4325A2018700F9A612 /* PhotoSearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C894A4125A2018700F9A612 /* PhotoSearchViewController.storyboard */; };
 		9C894A4525A2018A00F9A612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C894A4425A2018A00F9A612 /* Assets.xcassets */; };
 		9C894A4825A2018A00F9A612 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C894A4625A2018A00F9A612 /* LaunchScreen.storyboard */; };
+		9C91AA6825D55D07004C1714 /* APIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C91AA6725D55D07004C1714 /* APIClientError.swift */; };
+		9C91AA6C25D55D15004C1714 /* PhotozouAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C91AA6B25D55D15004C1714 /* PhotozouAPIError.swift */; };
 		9C9528A925CA370B0023712F /* PhotoSearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9528A725CA370B0023712F /* PhotoSearchCollectionViewCell.swift */; };
 		9C9528AA25CA370B0023712F /* PhotoSearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C9528A825CA370B0023712F /* PhotoSearchCollectionViewCell.xib */; };
 		9C95C5B625B330820036B29E /* PhotoSearchBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C95C5B525B330820036B29E /* PhotoSearchBaseView.swift */; };
@@ -44,6 +46,8 @@
 		9C894A4425A2018A00F9A612 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C894A4725A2018A00F9A612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C894A4925A2018A00F9A612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C91AA6725D55D07004C1714 /* APIClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientError.swift; sourceTree = "<group>"; };
+		9C91AA6B25D55D15004C1714 /* PhotozouAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotozouAPIError.swift; sourceTree = "<group>"; };
 		9C9528A725CA370B0023712F /* PhotoSearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		9C9528A825CA370B0023712F /* PhotoSearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoSearchCollectionViewCell.xib; sourceTree = "<group>"; };
 		9C95C5B525B330820036B29E /* PhotoSearchBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchBaseView.swift; sourceTree = "<group>"; };
@@ -169,10 +173,20 @@
 		9C9177A825B2D2F900B1B52E /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				9C91AA6625D55CC5004C1714 /* Error */,
 				9C9A085525CA599C00C6C30A /* Response */,
 				9C9A086525CA6F0800C6C30A /* Request */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		9C91AA6625D55CC5004C1714 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				9C91AA6725D55D07004C1714 /* APIClientError.swift */,
+				9C91AA6B25D55D15004C1714 /* PhotozouAPIError.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		9C9528A625CA36CE0023712F /* CollectionViewCell */ = {
@@ -348,6 +362,7 @@
 				9C9A085325CA4FDB00C6C30A /* PhotoSearchViewModel.swift in Sources */,
 				9C9A086725CA6F2500C6C30A /* SearchPhotoRequest.swift in Sources */,
 				9C9A086B25CA702000C6C30A /* PhotozouAPIRequest.swift in Sources */,
+				9C91AA6C25D55D15004C1714 /* PhotozouAPIError.swift in Sources */,
 				9C9A086F25CA85B000C6C30A /* Common.swift in Sources */,
 				9C894A3C25A2018700F9A612 /* AppDelegate.swift in Sources */,
 				9C9A085725CA59AE00C6C30A /* SearchPhoto.swift in Sources */,
@@ -355,6 +370,7 @@
 				9C95C5B625B330820036B29E /* PhotoSearchBaseView.swift in Sources */,
 				9C1DE1EC25B586CA00196BE3 /* LoginViewController.swift in Sources */,
 				9C894A3E25A2018700F9A612 /* SceneDelegate.swift in Sources */,
+				9C91AA6825D55D07004C1714 /* APIClientError.swift in Sources */,
 				9C1DE1EF25B586E100196BE3 /* LoginBaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
