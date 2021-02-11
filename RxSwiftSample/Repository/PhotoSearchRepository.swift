@@ -6,37 +6,55 @@
 //
 
 import Foundation
+import RxSwift
 
-protocol PhotoSearchRepositoryProtocol {
+protocol PhotoSearchRepositoryObservable {
     /// 画像を取得する
     /// - Parameters:
-    ///   - request: APIのリクエスト
-    func getPhotos(request: URLRequest, completion: @escaping (Result<SearchPhoto, Error>) -> Void)
+    ///   - searchWord: 検索ワード
+    ///   - completion: 成功、失敗ハンドル
+    func getPhotos(searchWord: String) -> Observable<SearchPhoto>
 }
-class PhotoSearchRepository: PhotoSearchRepositoryProtocol {
+class PhotoSearchRepository: PhotoSearchRepositoryObservable {
 }
 // MARK: - API Method
 extension PhotoSearchRepository {
-    // 画像を取得する
-    func getPhotos(request: URLRequest, completion: @escaping (Result<SearchPhoto, Error>) -> Void) {
-        let session = URLSession.shared
-        let task = session.dataTask(with: request) { data, _, error in
-            if let error = error {
-                completion(.failure(error))
-                return
+    func getPhotos(searchWord: String) -> Observable<SearchPhoto> {
+        // リクエストの組み立て
+        let request = SearchPhotoRequest(keyword: searchWord).buildURLRequest()
+        // APIコール
+        return Observable<SearchPhoto>.create { observer in
+            let session = URLSession.shared
+            let task = session.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    observer.on(.error(APIClientError.connectionError(error)))
+                    return
+                }
+                guard let data = data, let response = response as? HTTPURLResponse else {
+                    observer.on(.error(APIClientError.unknown))
+                    return
+                }
+                let decoder = JSONDecoder()
+                if (200..<300).contains(response.statusCode) {
+                    do {
+                        let photo = try decoder.decode(SearchPhoto.self, from: data)
+                        observer.on(.next(photo))
+                        observer.on(.completed) // ??
+                    } catch {
+                        observer.on(.error(APIClientError.resonseParseError(error)))
+                    }
+                } else {
+                    do {
+                        let apiError = try decoder.decode(PhotozouAPIError.self, from: data)
+                        observer.on(.error(APIClientError.apiError(apiError)))
+                    } catch {
+                        observer.on(.error(APIClientError.resonseParseError(error)))
+                    }
+                }
             }
-            guard let data = data else {
-                completion(.failure(NetworkError.unknown))
-                return
-            }
-            let decoder = JSONDecoder()
-            do {
-                let photo = try decoder.decode(SearchPhoto.self, from: data)
-                completion(.success(photo))
-            } catch {
-                completion(.failure(NetworkError.invalidResponse))
-            }
+            task.resume()
+            
+            return Disposables.create { task.cancel() }
         }
-        task.resume()
     }
 }
