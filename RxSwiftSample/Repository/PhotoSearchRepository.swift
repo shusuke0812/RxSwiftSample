@@ -8,22 +8,23 @@
 import Foundation
 import RxSwift
 
-protocol PhotoSearchRepositoryObservable {
+protocol PhotoSearchRepositoryProtocol {
     /// 画像を取得する
     /// - Parameters:
     ///   - searchWord: 検索ワード
     ///   - completion: 成功、失敗ハンドル
-    func getPhotos(searchWord: String) -> Observable<SearchPhoto>
+    func getPhotos(searchWord: String) -> Observable<[Photo]>
 }
-class PhotoSearchRepository: PhotoSearchRepositoryObservable {
+class PhotoSearchRepository: PhotoSearchRepositoryProtocol {
 }
 // MARK: - API Method
 extension PhotoSearchRepository {
-    func getPhotos(searchWord: String) -> Observable<SearchPhoto> {
+    func getPhotos(searchWord: String) -> Observable<[Photo]> {
         // リクエストの組み立て
         let request = SearchPhotoRequest(keyword: searchWord).buildURLRequest()
         // APIコール
-        return Observable<SearchPhoto>.create { observer in
+        // SeachPhoto型のObservableオブジェクトを生成
+        return Observable<[Photo]>.create { observer in
             let session = URLSession.shared
             let task = session.dataTask(with: request) { data, response, error in
                 if let error = error {
@@ -38,7 +39,7 @@ extension PhotoSearchRepository {
                 if (200..<300).contains(response.statusCode) {
                     do {
                         let photo = try decoder.decode(SearchPhoto.self, from: data)
-                        observer.on(.next(photo))
+                        observer.on(.next(photo.info.photo))
                         observer.on(.completed) // ??
                     } catch {
                         observer.on(.error(APIClientError.resonseParseError(error)))
