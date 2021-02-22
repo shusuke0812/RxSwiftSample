@@ -23,7 +23,10 @@ struct SearchPhotoRequest: PhotozouAPIRequest {
     var parameters: [URLQueryItem]? {
         [ URLQueryItem(name: "keyword", value: self.keyword) ]
     }
-    var body: Encodable? {
+    var header: [String: String]? {
+        nil
+    }
+    var body: Data? {
         nil
     }
 }
