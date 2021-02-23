@@ -6,54 +6,50 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-protocol PhotoSearchViewModelDelegate: AnyObject {
-    /// 画像の取得に成功した
-    func didSuccessGetPhotos()
-    /// 画像の取得に失敗した
-    /// - Parameter errorMessage: エラーメッセージ
-    func didFailedGetPhotos(errorMessage: String)
+/// 入力を管理するプロトコル
+protocol PhotoSearchViewModelInputs {
+    /// 検索ワード
+    var searchWord: BehaviorRelay<String> { get }
 }
-
-class PhotoSearchViewModel: NSObject {
-    /// SearchPhotoのリポジトリクラス
+/// 出力を管理するプロトコル
+protocol PhotoSearchViewModelOutputs {
+    /// 検索した写真情報
+    var photos: BehaviorRelay<[Photo]> { get }
+}
+/// 入出力を管理するプロトコル
+protocol PhotoSearchViewModelType {
+    var inputs: PhotoSearchViewModelInputs { get }
+    var outputs: PhotoSearchViewModelOutputs { get }
+}
+class PhotoSearchViewModel: PhotoSearchViewModelType, PhotoSearchViewModelInputs, PhotoSearchViewModelOutputs {
+    /// 写真検索リポジトリ
     private let photoSearchRepository: PhotoSearchRepositoryProtocol
-    /// 画像データ
-    var photos: [Photo] = []
-    /// デリゲート
-    weak var delegate: PhotoSearchViewModelDelegate?
+    /// DispoaseBag（購読廃棄）
+    private let disposeBag = DisposeBag()
     /// CollectionViewのセクション数
     private let sectionNumber = 1
+   
+    // 入出力プロパティ
+    var inputs: PhotoSearchViewModelInputs { return self }
+    var outputs: PhotoSearchViewModelOutputs { return self }
+    // 入力
+    let searchWord = BehaviorRelay<String>(value: "")
+    // 出力
+    var photos = BehaviorRelay<[Photo]>(value: [])
     
     init(photoSearchRepository: PhotoSearchRepositoryProtocol) {
         self.photoSearchRepository = photoSearchRepository
-    }
-}
-// MARK: - API Method
-extension PhotoSearchViewModel {
-    func getPhotos(request: URLRequest) {
-        self.photoSearchRepository.getPhotos(request: request) { response in
-            switch response {
-            case .success(let photos):
-                self.photos = photos.info.photo
-                self.delegate?.didSuccessGetPhotos()
-            case .failure(let error):
-                self.delegate?.didFailedGetPhotos(errorMessage: "画像の取得に失敗しました" + "error=\(error.localizedDescription)")
+        
+        self.searchWord.asObservable()
+            .filter { $0.count > 0 }
+            .debounce(RxTimeInterval.milliseconds(1), scheduler: MainScheduler.instance)
+            .flatMapLatest { [unowned self] searchWord in
+                return self.photoSearchRepository.getPhotos(searchWord: searchWord)
             }
-        }
-    }
-}
-// MARK: - UICollectionView DataSource Method
-extension PhotoSearchViewModel: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        self.sectionNumber
-    }
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        self.photos.count
-    }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoSearchCollectionViewCell", for: indexPath) as! PhotoSearchCollectionViewCell
-        cell.setUI(photo: self.photos[indexPath.row])
-        return cell
+            .bind(to: self.photos)
+            .disposed(by: self.disposeBag)
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class PhotoSearchViewController: UIViewController {
     /// BaseView
@@ -14,25 +15,37 @@ class PhotoSearchViewController: UIViewController {
     private var viewModel: PhotoSearchViewModel!
     /// 整数フォーム判定ヘルパー
     private let numberFormHelper = NumberFormHelper()
+    /// DispoaseBag（購読廃棄）
+    private let disposeBag = RxSwift.DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setDissmissKeyboard()
         self.viewModel = PhotoSearchViewModel(photoSearchRepository: PhotoSearchRepository())
         self.setDelegateDataSource()
+        self.loadPhoto()
+        self.setCollectionView()
+    }
+}
+// MARK: - Private Method
+extension PhotoSearchViewController {
+    private func loadPhoto() {
+        self.baseView.searchBar.rx.text.orEmpty
+            .bind(to: self.viewModel.inputs.searchWord)
+            .disposed(by: disposeBag)
+    }
+    private func setCollectionView() {
+        self.viewModel.outputs.photos.asObservable()
+            .bind(to: self.baseView.collectionView.rx.items(cellIdentifier: "PhotoSearchCollectionViewCell", cellType: PhotoSearchCollectionViewCell.self)) { index, result, cell in
+                cell.setUI(photo: result)
+            }
+            .disposed(by: self.disposeBag)
     }
 }
 // MARK: - Initialized Method
 extension PhotoSearchViewController {
     private func setDelegateDataSource() {
         self.baseView.collectionView.delegate = self
-        self.baseView.collectionView.dataSource = self.viewModel
-        self.baseView.searchBar.delegate = self
-        self.viewModel.delegate = self
-    }
-}
-// MARK: - UICollectionView Delegate Method
-extension PhotoSearchViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     }
 }
 // MARK: - UICollectionView Delegate FlowLayout Method
@@ -47,26 +60,5 @@ extension PhotoSearchViewController: UICollectionViewDelegateFlowLayout {
             let cellHeight: CGFloat = cellWidth
             return CGSize(width: cellWidth, height: cellHeight)
         }
-    }
-}
-// MARK: - UISearchBar Delegate Method
-extension PhotoSearchViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchText: String = searchBar.text else { return }
-        let request = SearchPhotoRequest(keyword: searchText).buildURLRequest()
-        self.viewModel.getPhotos(request: request)
-        // キーボードを閉じる
-        self.baseView.searchBar.endEditing(true)
-    }
-}
-// MARK: - ViewModel Delegate Method
-extension PhotoSearchViewController: PhotoSearchViewModelDelegate {
-    func didSuccessGetPhotos() {
-        DispatchQueue.main.async { [weak self] in
-            self?.baseView.collectionView.reloadData()
-        }
-    }
-    func didFailedGetPhotos(errorMessage: String) {
-        print(errorMessage)
     }
 }

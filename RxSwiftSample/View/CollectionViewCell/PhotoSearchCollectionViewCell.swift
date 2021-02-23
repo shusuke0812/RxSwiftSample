@@ -19,7 +19,7 @@ class PhotoSearchCollectionViewCell: UICollectionViewCell {
 // MARK: - Initialized Method
 extension PhotoSearchCollectionViewCell {
     private func initUI() {
-        //self.imageView.image = UIImage(named: "loading")
+        self.imageView.image = UIImage(named: "loading")
     }
 }
 // MARK: - Setting UI Method
