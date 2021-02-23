@@ -31,11 +31,11 @@ class PhotoSearchViewController: UIViewController {
 extension PhotoSearchViewController {
     private func loadPhoto() {
         self.baseView.searchBar.rx.text.orEmpty
-            .bind(to: self.viewModel.searchWord)
+            .bind(to: self.viewModel.inputs.searchWord)
             .disposed(by: disposeBag)
     }
     private func setCollectionView() {
-        self.viewModel.photos.asObservable()
+        self.viewModel.outputs.photos.asObservable()
             .bind(to: self.baseView.collectionView.rx.items(cellIdentifier: "PhotoSearchCollectionViewCell", cellType: PhotoSearchCollectionViewCell.self)) { index, result, cell in
                 cell.setUI(photo: result)
             }
