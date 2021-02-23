@@ -25,7 +25,7 @@ class PhotoSearchViewModel {
         self.photoSearchRepository = photoSearchRepository
         
         self.searchWord.asObservable()
-            .filter { $0.count > 1 }
+            .filter { $0.count > 0 }
             .debounce(RxTimeInterval.milliseconds(1), scheduler: MainScheduler.instance)
             .flatMapLatest { [unowned self] searchWord in
                 return self.photoSearchRepository.getPhotos(searchWord: searchWord)
