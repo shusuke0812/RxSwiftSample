@@ -26,13 +26,13 @@ class PhotoSearchViewController: UIViewController {
         // ViewModel初期化
         self.viewModel = PhotoSearchViewModel(photoSearchRepository: PhotoSearchRepository())
         // デリゲート・データソース設定
-        self.baseView.collectionView.rx.setDelegate(self).disposed(by: disposeBag)
+        self.baseView.collectionView.rx.setDelegate(self).disposed(by: self.disposeBag)
         
         // MARK: - ViewModelへのInput
         // キーワードを入力した時の処理
         self.baseView.searchBar.rx.text.orEmpty
             .bind(to: self.viewModel.inputs.searchWord)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         // MARK: - ViewModelからのOutput
         // ViewModelで保持している写真情報をCollectionViewに反映する
