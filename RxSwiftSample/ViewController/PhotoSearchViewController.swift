@@ -20,21 +20,22 @@ class PhotoSearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // MARK: - 初期設定
+        // キーボード以外をタップしたらキーボードを閉じる
         self.setDissmissKeyboard()
+        // ViewModel初期化
         self.viewModel = PhotoSearchViewModel(photoSearchRepository: PhotoSearchRepository())
-        self.setDelegateDataSource()
-        self.loadPhoto()
-        self.setCollectionView()
-    }
-}
-// MARK: - Private Method
-extension PhotoSearchViewController {
-    private func loadPhoto() {
+        // デリゲート・データソース設定
+        self.baseView.collectionView.rx.setDelegate(self).disposed(by: disposeBag)
+        
+        // MARK: - ViewModelへのInput
+        // キーワードを入力した時の処理
         self.baseView.searchBar.rx.text.orEmpty
             .bind(to: self.viewModel.inputs.searchWord)
             .disposed(by: disposeBag)
-    }
-    private func setCollectionView() {
+        
+        // MARK: - ViewModelからのOutput
+        // ViewModelで保持している写真情報をCollectionViewに反映する
         self.viewModel.outputs.photos.asObservable()
             .bind(to: self.baseView.collectionView.rx.items(cellIdentifier: "PhotoSearchCollectionViewCell", cellType: PhotoSearchCollectionViewCell.self)) { index, result, cell in
                 cell.setUI(photo: result)
@@ -42,23 +43,20 @@ extension PhotoSearchViewController {
             .disposed(by: self.disposeBag)
     }
 }
-// MARK: - Initialized Method
+
+// MARK: - Private Method
 extension PhotoSearchViewController {
-    private func setDelegateDataSource() {
-        self.baseView.collectionView.delegate = self
+    private func setCellSize(cellWidth: CGFloat, cellHegiht: CGFloat) -> CGSize {
+        return CGSize(width: cellWidth, height: cellHegiht)
     }
 }
 // MARK: - UICollectionView Delegate FlowLayout Method
 extension PhotoSearchViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if numberFormHelper.judgePermutation(number: indexPath.item + 1) {
-            let cellWidth: CGFloat = self.baseView.bounds.width
-            let cellHeight: CGFloat = cellWidth / 2
-            return CGSize(width: cellWidth, height: cellHeight)
+            return self.setCellSize(cellWidth: self.baseView.bounds.width, cellHegiht: self.baseView.bounds.width / 2)
         } else {
-            let cellWidth: CGFloat = self.baseView.bounds.width / 2
-            let cellHeight: CGFloat = cellWidth
-            return CGSize(width: cellWidth, height: cellHeight)
+            return self.setCellSize(cellWidth: self.baseView.bounds.width / 2, cellHegiht: self.baseView.bounds.width / 2)
         }
     }
 }
