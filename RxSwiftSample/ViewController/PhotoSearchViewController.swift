@@ -21,12 +21,13 @@ class PhotoSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // MARK: - 初期設定
-        // キーボード以外をタップしたらキーボードを閉じる
-        self.setDissmissKeyboard()
         // ViewModel初期化
         self.viewModel = PhotoSearchViewModel(photoSearchRepository: PhotoSearchRepository())
-        // デリゲート・データソース設定
+        // Delegate・DataSource設定
         self.baseView.collectionView.rx.setDelegate(self).disposed(by: self.disposeBag)
+        self.baseView.searchBar.rx.setDelegate(self).disposed(by: self.disposeBag)
+        // キーボード以外をタップしたらキーボードを閉じる
+        self.setDissmissKeyboard()
         
         // MARK: - ViewModelへのInput
         // キーワードを入力した時の処理
@@ -48,6 +49,13 @@ class PhotoSearchViewController: UIViewController {
 extension PhotoSearchViewController {
     private func setCellSize(cellWidth: CGFloat, cellHegiht: CGFloat) -> CGSize {
         return CGSize(width: cellWidth, height: cellHegiht)
+    }
+}
+// MARK: - UISearch Delegate Method
+extension PhotoSearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let keyword = searchBar.text, !keyword.isEmpty else { return }
+        self.baseView.searchBar.endEditing(true)
     }
 }
 // MARK: - UICollectionView Delegate FlowLayout Method
