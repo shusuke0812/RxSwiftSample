@@ -30,6 +30,9 @@
 		9C9A086F25CA85B000C6C30A /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A086E25CA85B000C6C30A /* Common.swift */; };
 		9C9A087425CA8AE700C6C30A /* NumberFormHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A087325CA8AE700C6C30A /* NumberFormHelper.swift */; };
 		9C9A087825CA987000C6C30A /* PhotoSearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A087725CA987000C6C30A /* PhotoSearchRepository.swift */; };
+		9CACF2F325F5B858009B4509 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CACF2F225F5B858009B4509 /* PhotoDetailViewController.swift */; };
+		9CACF2F625F5B869009B4509 /* PhotoDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CACF2F525F5B869009B4509 /* PhotoDetailViewController.storyboard */; };
+		9CACF2FA25F5B950009B4509 /* PhotoDetailBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CACF2F925F5B950009B4509 /* PhotoDetailBaseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +63,9 @@
 		9C9A086E25CA85B000C6C30A /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		9C9A087325CA8AE700C6C30A /* NumberFormHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormHelper.swift; sourceTree = "<group>"; };
 		9C9A087725CA987000C6C30A /* PhotoSearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchRepository.swift; sourceTree = "<group>"; };
+		9CACF2F225F5B858009B4509 /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
+		9CACF2F525F5B869009B4509 /* PhotoDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoDetailViewController.storyboard; sourceTree = "<group>"; };
+		9CACF2F925F5B950009B4509 /* PhotoDetailBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailBaseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				9C894A3F25A2018700F9A612 /* PhotoSearchViewController.swift */,
+				9CACF2F225F5B858009B4509 /* PhotoDetailViewController.swift */,
 				9C1DE1EB25B586CA00196BE3 /* LoginViewController.swift */,
 			);
 			path = ViewController;
@@ -104,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				9C894A4125A2018700F9A612 /* PhotoSearchViewController.storyboard */,
+				9CACF2F525F5B869009B4509 /* PhotoDetailViewController.storyboard */,
 				9C1DE1F125B586FD00196BE3 /* LoginViewController.storyboard */,
 			);
 			path = Storyboard;
@@ -213,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				9C95C5B525B330820036B29E /* PhotoSearchBaseView.swift */,
+				9CACF2F925F5B950009B4509 /* PhotoDetailBaseView.swift */,
 				9C1DE1EE25B586E100196BE3 /* LoginBaseView.swift */,
 			);
 			path = BaseView;
@@ -315,6 +324,7 @@
 				9C1DE1F225B586FD00196BE3 /* LoginViewController.storyboard in Resources */,
 				9C894A4525A2018A00F9A612 /* Assets.xcassets in Resources */,
 				9C894A4325A2018700F9A612 /* PhotoSearchViewController.storyboard in Resources */,
+				9CACF2F625F5B869009B4509 /* PhotoDetailViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,9 +380,11 @@
 				9C894A4025A2018700F9A612 /* PhotoSearchViewController.swift in Sources */,
 				9C9A087425CA8AE700C6C30A /* NumberFormHelper.swift in Sources */,
 				9C9A087825CA987000C6C30A /* PhotoSearchRepository.swift in Sources */,
+				9CACF2FA25F5B950009B4509 /* PhotoDetailBaseView.swift in Sources */,
 				9C9A085325CA4FDB00C6C30A /* PhotoSearchViewModel.swift in Sources */,
 				9C90DB6525E3802600F4AB9B /* UIViewController+Extension.swift in Sources */,
 				9C9A086725CA6F2500C6C30A /* SearchPhotoRequest.swift in Sources */,
+				9CACF2F325F5B858009B4509 /* PhotoDetailViewController.swift in Sources */,
 				9C9A086B25CA702000C6C30A /* PhotozouAPIRequest.swift in Sources */,
 				9C91AA6C25D55D15004C1714 /* PhotozouAPIError.swift in Sources */,
 				9C9A086F25CA85B000C6C30A /* Common.swift in Sources */,
