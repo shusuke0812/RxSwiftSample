@@ -9,12 +9,18 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-/// 入力を管理するプロトコル
+/**
+ * ViewModelの役割
+ * - 検索ワードに基づいてAPIのリクエスト処理を行い、レスポンス情報を保持・Viewへ出力する
+ * - CollectionViewのセルIndexPathを受け取り該当するデータをViewへ出力する
+ */
+
+/// 入力を管理するプロトコル（`Observer`）　※ BehaviorRelayはObservableなので宜しくない？
 protocol PhotoSearchViewModelInputs {
     /// 検索ワード
     var searchWord: BehaviorRelay<String> { get }
 }
-/// 出力を管理するプロトコル
+/// 出力を管理するプロトコル（`Observable`）
 protocol PhotoSearchViewModelOutputs {
     /// 検索した写真情報
     var photos: BehaviorRelay<[Photo]> { get }
@@ -45,7 +51,7 @@ class PhotoSearchViewModel: PhotoSearchViewModelType, PhotoSearchViewModelInputs
         
         self.searchWord.asObservable()
             .filter { $0.count > 0 }
-            .debounce(RxTimeInterval.milliseconds(1), scheduler: MainScheduler.instance)
+            .debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
             .flatMapLatest { [unowned self] searchWord in
                 return self.photoSearchRepository.getPhotos(searchWord: searchWord)
             }

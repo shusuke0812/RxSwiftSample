@@ -5,6 +5,12 @@
 //  Created by Shusuke Ota on 2021/1/3.
 //
 
+/**
+ * ViewControllerの役割
+ * - ViewModelから受け取った通知をBaseViewに反映
+ * - ユーザーインタラクションをViewModelへ通知する
+ */
+
 import UIKit
 import RxSwift
 
@@ -13,8 +19,6 @@ class PhotoSearchViewController: UIViewController {
     private var baseView: PhotoSearchBaseView { self.view as! PhotoSearchBaseView }
     /// ViewModel
     private var viewModel: PhotoSearchViewModel!
-    /// 整数フォーム判定ヘルパー
-    private let numberFormHelper = NumberFormHelper()
     /// DispoaseBag（購読廃棄）
     private let disposeBag = RxSwift.DisposeBag()
 
@@ -61,7 +65,7 @@ extension PhotoSearchViewController: UISearchBarDelegate {
 // MARK: - UICollectionView Delegate FlowLayout Method
 extension PhotoSearchViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if numberFormHelper.judgePermutation(number: indexPath.item + 1) {
+        if NumberFormHelper.shared.judgePermutation(number: indexPath.item + 1) {
             return self.setCellSize(cellWidth: self.baseView.bounds.width, cellHegiht: self.baseView.bounds.width / 2)
         } else {
             return self.setCellSize(cellWidth: self.baseView.bounds.width / 2, cellHegiht: self.baseView.bounds.width / 2)

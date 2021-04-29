@@ -8,6 +8,8 @@
 import Foundation
 
 class NumberFormHelper {
+    /// シングルトン
+    static let shared = NumberFormHelper()
     /// 偶数・奇数を判定する
     /// - Parameter numer: 判定する整数
     /// - Returns: 偶数（true）、奇数（false）
