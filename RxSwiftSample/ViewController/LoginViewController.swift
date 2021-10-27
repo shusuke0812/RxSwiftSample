@@ -10,9 +10,8 @@ import RxSwift
 import RxCocoa
 
 class LoginViewController: UIViewController {
-    // BaseView
     private var baseView: LoginBaseView { self.view as! LoginBaseView }
-    // Rx DisposeBag
+
     private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {

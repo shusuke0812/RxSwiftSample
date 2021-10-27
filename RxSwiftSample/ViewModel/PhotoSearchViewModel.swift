@@ -31,11 +31,9 @@ protocol PhotoSearchViewModelType {
     var outputs: PhotoSearchViewModelOutputs { get }
 }
 class PhotoSearchViewModel: PhotoSearchViewModelType, PhotoSearchViewModelInputs, PhotoSearchViewModelOutputs {
-    /// 写真検索リポジトリ
     private let photoSearchRepository: PhotoSearchRepositoryProtocol
-    /// DispoaseBag（購読廃棄）
     private let disposeBag = DisposeBag()
-    /// CollectionViewのセクション数
+
     private let sectionNumber = 1
    
     // 入出力プロパティ

@@ -7,14 +7,13 @@
 
 import Foundation
 
-/// HTTPメソッド
 enum HTTPMethod: String {
     case get    = "GET"
     case post   = "POST"
     case put    = "PUT"
     case delete = "DELETE"
 }
-/// ネットワークエラー
+
 enum NetworkError: Error {
     case invalidUrl         // 不正なURL
     case invalidResponse    // 不正なレスポンス

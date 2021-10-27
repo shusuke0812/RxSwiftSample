@@ -15,11 +15,9 @@ import UIKit
 import RxSwift
 
 class PhotoSearchViewController: UIViewController {
-    /// BaseView
     private var baseView: PhotoSearchBaseView { self.view as! PhotoSearchBaseView }
-    /// ViewModel
     private var viewModel: PhotoSearchViewModel!
-    /// DispoaseBag（購読廃棄）
+
     private let disposeBag = RxSwift.DisposeBag()
 
     override func viewDidLoad() {

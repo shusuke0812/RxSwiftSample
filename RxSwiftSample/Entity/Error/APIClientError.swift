@@ -7,7 +7,6 @@
 
 import Foundation
 
-/// APIクライアント内のエラー
 enum APIClientError: Error {
     /// 通信に失敗（ex. 端末オフライン、URLホストが見つからない etc）
     case connectionError(Error)

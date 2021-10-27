@@ -17,7 +17,7 @@ class LoginBaseView: UIView {
     @IBOutlet weak var maxUserNameLengthLabel: UILabel!
     @IBOutlet weak var currentUserNameLengthLabel: UILabel!
     
-    // フォームの文字数上限
+    // フォームの文字数上限下限
     let maxUserNameLength = 15
     let minPasswordLength = 5
     
