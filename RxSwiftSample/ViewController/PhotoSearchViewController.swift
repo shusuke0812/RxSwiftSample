@@ -65,7 +65,7 @@ extension PhotoSearchViewController: UISearchBarDelegate {
 // MARK: - UICollectionView Delegate FlowLayout Method
 extension PhotoSearchViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if NumberFormHelper.shared.judgePermutation(number: indexPath.item + 1) {
+        if NumberFormHelper.judgePermutation(number: indexPath.item + 1) {
             return self.setCellSize(cellWidth: self.baseView.bounds.width, cellHegiht: self.baseView.bounds.width / 2)
         } else {
             return self.setCellSize(cellWidth: self.baseView.bounds.width / 2, cellHegiht: self.baseView.bounds.width / 2)
