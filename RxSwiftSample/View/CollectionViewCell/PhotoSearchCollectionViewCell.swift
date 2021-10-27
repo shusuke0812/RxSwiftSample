@@ -13,19 +13,19 @@ class PhotoSearchCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.initUI()
+        initUI()
     }
 }
 // MARK: - Initialized Method
 extension PhotoSearchCollectionViewCell {
     private func initUI() {
-        self.imageView.image = UIImage(named: "loading")
+        imageView.image = UIImage(named: "loading")
     }
 }
 // MARK: - Setting UI Method
 extension PhotoSearchCollectionViewCell {
     func setUI(photo: Photo) {
         guard let photoImageUrl = URL(string: photo.imageUrl) else { return }
-        self.imageView.sd_setImage(with: photoImageUrl, placeholderImage: UIImage(named: "loading"), options: SDWebImageOptions.refreshCached)
+        imageView.sd_setImage(with: photoImageUrl, placeholderImage: UIImage(named: "loading"), options: SDWebImageOptions.refreshCached)
     }
 }

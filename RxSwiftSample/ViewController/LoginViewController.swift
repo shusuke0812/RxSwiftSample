@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 class LoginViewController: UIViewController {
-    private var baseView: LoginBaseView { self.view as! LoginBaseView }
+    private var baseView: LoginBaseView { view as! LoginBaseView }
 
     private let disposeBag = DisposeBag()
 
@@ -25,19 +25,19 @@ extension LoginViewController {
     private func didTapStartButton() {
         self.baseView.startButton.rx.tap.subscribe({ [weak self] _ in
             self?.transitionPhotoSearcPage()
-        }).disposed(by: self.disposeBag)
+        }).disposed(by: disposeBag)
     }
     private func transitionPhotoSearcPage() {
         let s = UIStoryboard(name: "PhotoSearchViewController", bundle: nil)
         let vc = s.instantiateViewController(identifier: "PhotoSearchViewController") as! UINavigationController
         vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+        present(vc, animated: true, completion: nil)
     }
 }
 // MARK: - TextField Validation Method
 extension LoginViewController {
     private func validateTextField() {
-        self.baseView.userNameTextField.rx.text.subscribe(onNext: { text in
+        baseView.userNameTextField.rx.text.subscribe(onNext: { text in
             if let text = text, text.count > self.baseView.maxUserNameLength { return }
             // 現在の入力文字数を反映する処理
             self.baseView.setCurrentUserNameLengthLabel()

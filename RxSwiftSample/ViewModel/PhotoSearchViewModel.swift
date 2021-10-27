@@ -47,13 +47,13 @@ class PhotoSearchViewModel: PhotoSearchViewModelType, PhotoSearchViewModelInputs
     init(photoSearchRepository: PhotoSearchRepositoryProtocol) {
         self.photoSearchRepository = photoSearchRepository
         
-        self.searchWord.asObservable()
+        searchWord.asObservable()
             .filter { $0.count > 0 }
             .debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
             .flatMapLatest { [unowned self] searchWord in
                 return self.photoSearchRepository.getPhotos(searchWord: searchWord)
             }
-            .bind(to: self.photos)
-            .disposed(by: self.disposeBag)
+            .bind(to: photos)
+            .disposed(by: disposeBag)
     }
 }

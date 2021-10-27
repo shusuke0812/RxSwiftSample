@@ -31,18 +31,18 @@ extension PhotozouAPIRequest {
     /// APIコール用のリクエスト生成
     func buildURLRequest() -> URLRequest {
         // baseURL, pathは格api型で正しく定義されているという前提で強制アンラップ
-        let url = URL(string: self.baseURL.appending(self.path))!
+        let url = URL(string: baseURL.appending(path))!
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
-        switch self.method {
+        switch method {
         case .get:
-            components?.queryItems = self.parameters
+            components?.queryItems = parameters
         default:
-            fatalError("Unsupported method \(self.method)")
+            fatalError("Unsupported method \(method)")
         }
         
         var urlRequest = URLRequest(url: url)
         urlRequest.url = components?.url
-        urlRequest.httpMethod = self.method.rawValue
+        urlRequest.httpMethod = method.rawValue
         
         return urlRequest
     }

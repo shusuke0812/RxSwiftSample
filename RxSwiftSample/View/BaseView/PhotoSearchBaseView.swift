@@ -16,13 +16,13 @@ class PhotoSearchBaseView: UIView {
     // MARK: - Lifecycle Method
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.initUI()
+        initUI()
     }
 }
 // MARK: - Initialized Method
 extension PhotoSearchBaseView {
     private func initUI() {
-        self.flowLayout.estimatedItemSize = .zero
-        self.collectionView.register(UINib(nibName: "PhotoSearchCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PhotoSearchCollectionViewCell")
+        flowLayout.estimatedItemSize = .zero
+        collectionView.register(UINib(nibName: "PhotoSearchCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PhotoSearchCollectionViewCell")
     }
 }

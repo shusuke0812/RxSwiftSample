@@ -15,7 +15,7 @@ import UIKit
 import RxSwift
 
 class PhotoSearchViewController: UIViewController {
-    private var baseView: PhotoSearchBaseView { self.view as! PhotoSearchBaseView }
+    private var baseView: PhotoSearchBaseView { view as! PhotoSearchBaseView }
     private var viewModel: PhotoSearchViewModel!
 
     private let disposeBag = RxSwift.DisposeBag()
@@ -24,26 +24,26 @@ class PhotoSearchViewController: UIViewController {
         super.viewDidLoad()
         // MARK: - 初期設定
         // ViewModel初期化
-        self.viewModel = PhotoSearchViewModel(photoSearchRepository: PhotoSearchRepository())
+        viewModel = PhotoSearchViewModel(photoSearchRepository: PhotoSearchRepository())
         // Delegate・DataSource設定
-        self.baseView.collectionView.rx.setDelegate(self).disposed(by: self.disposeBag)
-        self.baseView.searchBar.rx.setDelegate(self).disposed(by: self.disposeBag)
+        baseView.collectionView.rx.setDelegate(self).disposed(by: disposeBag)
+        baseView.searchBar.rx.setDelegate(self).disposed(by: disposeBag)
         // キーボード以外をタップしたらキーボードを閉じる
-        self.setDissmissKeyboard()
+        setDissmissKeyboard()
         
         // MARK: - ViewModelへのInput
         // キーワードを入力した時の処理
-        self.baseView.searchBar.rx.text.orEmpty
-            .bind(to: self.viewModel.inputs.searchWord)
-            .disposed(by: self.disposeBag)
+        baseView.searchBar.rx.text.orEmpty
+            .bind(to: viewModel.inputs.searchWord)
+            .disposed(by: disposeBag)
         
         // MARK: - ViewModelからのOutput
         // ViewModelで保持している写真情報をCollectionViewに反映する
-        self.viewModel.outputs.photos.asObservable()
-            .bind(to: self.baseView.collectionView.rx.items(cellIdentifier: "PhotoSearchCollectionViewCell", cellType: PhotoSearchCollectionViewCell.self)) { index, result, cell in
+        viewModel.outputs.photos.asObservable()
+            .bind(to: baseView.collectionView.rx.items(cellIdentifier: "PhotoSearchCollectionViewCell", cellType: PhotoSearchCollectionViewCell.self)) { index, result, cell in
                 cell.setUI(photo: result)
             }
-            .disposed(by: self.disposeBag)
+            .disposed(by: disposeBag)
     }
 }
 
@@ -57,16 +57,16 @@ extension PhotoSearchViewController {
 extension PhotoSearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let keyword = searchBar.text, !keyword.isEmpty else { return }
-        self.baseView.searchBar.endEditing(true)
+        baseView.searchBar.endEditing(true)
     }
 }
 // MARK: - UICollectionView Delegate FlowLayout Method
 extension PhotoSearchViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if NumberFormHelper.judgePermutation(number: indexPath.item + 1) {
-            return self.setCellSize(cellWidth: self.baseView.bounds.width, cellHegiht: self.baseView.bounds.width / 2)
+            return setCellSize(cellWidth: baseView.bounds.width, cellHegiht: baseView.bounds.width / 2)
         } else {
-            return self.setCellSize(cellWidth: self.baseView.bounds.width / 2, cellHegiht: self.baseView.bounds.width / 2)
+            return setCellSize(cellWidth: baseView.bounds.width / 2, cellHegiht: baseView.bounds.width / 2)
         }
     }
 }

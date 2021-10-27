@@ -23,30 +23,30 @@ class LoginBaseView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.initUI()
+        initUI()
     }
 }
 // MRK: - Initialized Method
 extension LoginBaseView {
     private func initUI() {
         // フォーム
-        self.userNameTextField.placeholder = "名前"
-        self.passwordTextField.placeholder = "パスワード"
+        userNameTextField.placeholder = "名前"
+        passwordTextField.placeholder = "パスワード"
         // バリデーションラベル
-        self.userNameValidLabel.text = "必須入力項目です"
-        self.passwordValidLabel.text = "必須入力項目です"
-        self.maxUserNameLengthLabel.text = "\(self.maxUserNameLength)"
-        self.currentUserNameLengthLabel.text = "0"
+        userNameValidLabel.text = "必須入力項目です"
+        passwordValidLabel.text = "必須入力項目です"
+        maxUserNameLengthLabel.text = "\(self.maxUserNameLength)"
+        currentUserNameLengthLabel.text = "0"
         // はじめるボタンの体裁
-        self.startButton.layer.masksToBounds = true
-        self.startButton.layer.cornerRadius = 5
+        startButton.layer.masksToBounds = true
+        startButton.layer.cornerRadius = 5
     }
 }
 // MARK: - Setting UI Method
 extension LoginBaseView {
     func setCurrentUserNameLengthLabel() {
-        if let textLength = self.userNameTextField.text?.count {
-            self.currentUserNameLengthLabel.text = "\(textLength)"
+        if let textLength = userNameTextField.text?.count {
+            currentUserNameLengthLabel.text = "\(textLength)"
         }
     }
 }
