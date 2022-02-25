@@ -25,7 +25,8 @@ RxSwiftを使ったサンプルコード
   - error（イベントによって生じたエラーを参照）
   - completed（イベント完了を参照）
 - イベントを通知する = Observable
-- イベントを受け取る = subscribe() -> Disposable （= メモリ解放オブジェクト）
+- イベントを受け取る = subscribe() -> Disposable （= メモリ解放オブジェクト） 
+  - ObservableType.subscribe(_:)はSequence.makeIterator()と同じ
 
 - Observable
   - 生成するメソッド
