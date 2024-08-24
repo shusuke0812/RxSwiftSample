@@ -8,11 +8,13 @@ PODS:
   - SDWebImage (5.10.0):
     - SDWebImage/Core (= 5.10.0)
   - SDWebImage/Core (5.10.0)
+  - Swinject (2.9.1)
 
 DEPENDENCIES:
   - RxCocoa
   - RxSwift
   - SDWebImage
+  - Swinject
 
 SPEC REPOS:
   trunk:
@@ -20,13 +22,15 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - SDWebImage
+    - Swinject
 
 SPEC CHECKSUMS:
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
+  Swinject: a827d508c6270da03ec74e558e728917a888fa9b
 
-PODFILE CHECKSUM: 75c20341b98e13140bbf8e2cf4b4d1204bc0e06f
+PODFILE CHECKSUM: 49c91c62c2912d28a563ec9aa0cf8bf1b660ac11
 
 COCOAPODS: 1.15.2
