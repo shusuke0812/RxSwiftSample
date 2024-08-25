@@ -16,6 +16,7 @@ protocol PhotoSearchRepositoryProtocol {
     func getPhotos(searchWord: String) -> Observable<[Photo]>
 }
 class PhotoSearchRepository: PhotoSearchRepositoryProtocol {
+    private var photos: [Photo] = []
 }
 // MARK: - API Method
 extension PhotoSearchRepository {
@@ -39,6 +40,7 @@ extension PhotoSearchRepository {
                 if (200..<300).contains(response.statusCode) {
                     do {
                         let photo = try decoder.decode(SearchPhoto.self, from: data)
+                        self.photos = photo.info.photo
                         observer.on(.next(photo.info.photo))
                         observer.on(.completed) // ??
                     } catch {
