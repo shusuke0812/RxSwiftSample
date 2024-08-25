@@ -6,14 +6,30 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
-class PhotoDetailViewModel {
+protocol PhotoDetailViewModelOutputs {
+    var selectedPhoto: BehaviorRelay<Photo?> { get }
+}
+
+protocol PhotoDetailViewModelType {
+    var outputs: PhotoDetailViewModelOutputs { get }
+}
+
+class PhotoDetailViewModel: PhotoDetailViewModelType, PhotoDetailViewModelOutputs {
     private let photoSearchRepository: PhotoSearchRepositoryProtocol
+    private let disposeBag = DisposeBag()
+    
+    var outputs: PhotoDetailViewModelOutputs { return self }
+    
+    var selectedPhoto = BehaviorRelay<Photo?>(value: nil)
     
     init(photoSearchRepository: PhotoSearchRepositoryProtocol) {
         self.photoSearchRepository = photoSearchRepository
         
-        let photo = photoSearchRepository.getSelectedPhoto()
-        print("DEBUG: selected photo=\(photo)")
+        photoSearchRepository.getSelectedPhoto()
+            .bind(to: selectedPhoto)
+            .disposed(by: disposeBag)
     }
 }
