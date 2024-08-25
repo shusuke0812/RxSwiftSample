@@ -9,6 +9,7 @@ import UIKit
 
 class PhotoDetailViewController: UIViewController {
     private var baseView: PhotoDetailBaseView { view as! PhotoDetailBaseView }
+    var viewModel: PhotoDetailViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()

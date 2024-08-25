@@ -43,6 +43,12 @@ class PhotoSearchViewController: UIViewController {
             }
             .disposed(by: disposeBag)
     }
+    
+    private func transitionToDetail() {
+        let s = UIStoryboard(name: "PhotoDetailViewController", bundle: nil)
+        let vc = s.instantiateInitialViewController() as! PhotoDetailViewController
+        present(vc, animated: true)
+    }
 }
 
 // MARK: - Private Method
@@ -66,5 +72,11 @@ extension PhotoSearchViewController: UICollectionViewDelegateFlowLayout {
         } else {
             return setCellSize(cellWidth: baseView.bounds.width / 2, cellHegiht: baseView.bounds.width / 2)
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let index = indexPath.row
+        viewModel.saveSelectedPhoto(index: index)
+        transitionToDetail()
     }
 }
