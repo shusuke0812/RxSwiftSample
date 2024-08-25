@@ -24,6 +24,10 @@ extension SwinjectStoryboard {
                 let repository = resolver.resolve(PhotoSearchRepositoryProtocol.self)!
                 return PhotoSearchViewModel(photoSearchRepository: repository)
             }
+            container.register(PhotoDetailViewModel.self) { resolver in
+                let repository = resolver.resolve(PhotoSearchRepositoryProtocol.self)!
+                return PhotoDetailViewModel(photoSearchRepository: repository)
+            }
         }
     }
     
@@ -31,6 +35,9 @@ extension SwinjectStoryboard {
         func assemble(container: Container) {
             container.storyboardInitCompleted(PhotoSearchViewController.self) { resolver, vc in
                 vc.viewModel = resolver.resolve(PhotoSearchViewModel.self)!
+            }
+            container.storyboardInitCompleted(PhotoDetailViewController.self) { resolver, vc in
+                vc.viewModel = resolver.resolve(PhotoDetailViewModel.self)!
             }
         }
     }
