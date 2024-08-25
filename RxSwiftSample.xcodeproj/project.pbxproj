@@ -34,6 +34,7 @@
 		9CACF2F625F5B869009B4509 /* PhotoDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CACF2F525F5B869009B4509 /* PhotoDetailViewController.storyboard */; };
 		9CACF2FA25F5B950009B4509 /* PhotoDetailBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CACF2F925F5B950009B4509 /* PhotoDetailBaseView.swift */; };
 		9CE855E92C7AEC3700240066 /* DIAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE855E82C7AEC3700240066 /* DIAssembly.swift */; };
+		9CF74A592C7B1B9800D57DC4 /* PhotoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF74A582C7B1B9800D57DC4 /* PhotoDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		9CACF2F525F5B869009B4509 /* PhotoDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoDetailViewController.storyboard; sourceTree = "<group>"; };
 		9CACF2F925F5B950009B4509 /* PhotoDetailBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailBaseView.swift; sourceTree = "<group>"; };
 		9CE855E82C7AEC3700240066 /* DIAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIAssembly.swift; sourceTree = "<group>"; };
+		9CF74A582C7B1B9800D57DC4 /* PhotoDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,6 +332,7 @@
 		9CBC6F7E27C85B8E005C2E59 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				9CF74A582C7B1B9800D57DC4 /* PhotoDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				9C1DE1EC25B586CA00196BE3 /* LoginViewController.swift in Sources */,
 				9C894A3E25A2018700F9A612 /* SceneDelegate.swift in Sources */,
 				9C91AA6825D55D07004C1714 /* APIClientError.swift in Sources */,
+				9CF74A592C7B1B9800D57DC4 /* PhotoDetailViewModel.swift in Sources */,
 				9C1DE1EF25B586E100196BE3 /* LoginBaseView.swift in Sources */,
 				9CE855E92C7AEC3700240066 /* DIAssembly.swift in Sources */,
 			);
