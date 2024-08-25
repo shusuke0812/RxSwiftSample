@@ -9,6 +9,7 @@ RxSwiftを使ったサンプルコード
 ## 概要
 - MVVM + RxSwift, RxCocoaを使った 写真検索アプリ
 - WebAPIは[フォト蔵API](http://photozou.jp/basic/api_method_search_public)を使用している
+- Swinjectを使ってDIを行っている
 
 ## UI
 - 写真検索画面
