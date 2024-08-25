@@ -56,4 +56,8 @@ class PhotoSearchViewModel: PhotoSearchViewModelType, PhotoSearchViewModelInputs
             .bind(to: photos)
             .disposed(by: disposeBag)
     }
+    
+    func saveSelectedPhoto(index: Int) {
+        photoSearchRepository.saveSelectedPhoto(index: index)
+    }
 }

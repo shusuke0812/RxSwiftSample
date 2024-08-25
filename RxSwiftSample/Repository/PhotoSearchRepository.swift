@@ -14,8 +14,12 @@ protocol PhotoSearchRepositoryProtocol {
     ///   - searchWord: 検索ワード
     ///   - completion: 成功、失敗ハンドル
     func getPhotos(searchWord: String) -> Observable<[Photo]>
+    func saveSelectedPhoto(index: Int)
+    func getSelectedPhoto() -> Observable<Photo>
 }
 class PhotoSearchRepository: PhotoSearchRepositoryProtocol {
+    private var photos: [Photo] = []
+    private var selectedPhoto: Photo?
 }
 // MARK: - API Method
 extension PhotoSearchRepository {
@@ -39,6 +43,7 @@ extension PhotoSearchRepository {
                 if (200..<300).contains(response.statusCode) {
                     do {
                         let photo = try decoder.decode(SearchPhoto.self, from: data)
+                        self.photos = photo.info.photo
                         observer.on(.next(photo.info.photo))
                         observer.on(.completed) // ??
                     } catch {
@@ -56,6 +61,23 @@ extension PhotoSearchRepository {
             task.resume()
             
             return Disposables.create { task.cancel() }
+        }
+    }
+    
+    func saveSelectedPhoto(index: Int) {
+        selectedPhoto = photos[index]
+    }
+    
+    func getSelectedPhoto() -> Observable<Photo> {
+        Observable<Photo>.create { observer in
+            guard let selectedPhoto = self.selectedPhoto else {
+                observer.on(.error(APIClientError.unknown)) // TODO: 別のエラー型に置き換える
+                return Disposables.create()
+            }
+            observer.on(.next(selectedPhoto))
+            observer.on(.completed)
+            
+            return Disposables.create()
         }
     }
 }

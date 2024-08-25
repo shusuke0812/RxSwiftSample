@@ -16,15 +16,13 @@ import RxSwift
 
 class PhotoSearchViewController: UIViewController {
     private var baseView: PhotoSearchBaseView { view as! PhotoSearchBaseView }
-    private var viewModel: PhotoSearchViewModel!
+    var viewModel: PhotoSearchViewModel!
 
     private let disposeBag = RxSwift.DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // MARK: - 初期設定
-        // ViewModel初期化
-        viewModel = PhotoSearchViewModel(photoSearchRepository: PhotoSearchRepository())
         // Delegate・DataSource設定
         baseView.collectionView.rx.setDelegate(self).disposed(by: disposeBag)
         baseView.searchBar.rx.setDelegate(self).disposed(by: disposeBag)
@@ -44,6 +42,12 @@ class PhotoSearchViewController: UIViewController {
                 cell.setUI(photo: result)
             }
             .disposed(by: disposeBag)
+    }
+    
+    private func transitionToDetail() {
+        let s = UIStoryboard(name: "PhotoDetailViewController", bundle: nil)
+        let vc = s.instantiateInitialViewController() as! PhotoDetailViewController
+        present(vc, animated: true)
     }
 }
 
@@ -68,5 +72,11 @@ extension PhotoSearchViewController: UICollectionViewDelegateFlowLayout {
         } else {
             return setCellSize(cellWidth: baseView.bounds.width / 2, cellHegiht: baseView.bounds.width / 2)
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let index = indexPath.row
+        viewModel.saveSelectedPhoto(index: index)
+        transitionToDetail()
     }
 }
