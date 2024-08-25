@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PhotoDetailBaseView: UIView {
     @IBOutlet weak var photoImageView: UIImageView!
@@ -14,5 +15,13 @@ class PhotoDetailBaseView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    func setUI(photo: Photo) {
+        guard let photoImageUrl = URL(string: photo.imageUrl) else { return }
+        photoImageView.sd_setImage(with: photoImageUrl, placeholderImage: UIImage(named: "loading"), options: SDWebImageOptions.refreshCached)
+        
+        photoTitleLabel.text = photo.photoTitle
+        photoDateLabel.text = photo.date
     }
 }
