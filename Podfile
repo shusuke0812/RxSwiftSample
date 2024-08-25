@@ -9,6 +9,7 @@ target 'RxSwiftSample' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'Swinject'
+  pod 'SwinjectStoryboard'
   # UI
   pod 'SDWebImage'
 
